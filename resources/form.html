@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<style>
+    body {
+        font-family:'Times New Roman', Times, serif;
+        margin: 20px;
+        background-color: #e9eff1;
+    }
+
+    h1 {
+        color: #5c6bc0;
+        text-align: center;
+        font-size: 2em;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        width: 600px;
+        margin: auto;
+        transition: transform 0.3s ease;
+    }
+
+    form:hover {
+        transform: translateY(-5px);
+    }
+
+    label {
+        font-size: 15px;
+        margin: 8px 0 6px;
+        color: #555;
+    }
+
+    input,
+    textarea {
+        max-width: 600px;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 18px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 15px;
+        background-color: #f9f9f9;
+        color: #333;
+        transition: border-color 0.3s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+        border-color: #5c6bc0;
+        outline: none;
+    }
+
+    textarea {
+        height: 120px;
+    }
+
+    button {
+        padding: 12px 25px;
+        background-color: #5c6bc0;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+        background-color: #5068a3;
+        transform: scale(1.05);
+    }
+
+    button:active {
+        transform: scale(1);
+        /* Return to normal size when clicked */
+    }
+</style>
+
+<body>
+    <h1>User Input Form</h1>
+    <form id="inputForm">
+        <label for="value1">Title:</label>
+        <input type="text" id="value1" name="value1" required><br><br>
+
+        <label for="value2">Content:</label>
+        <textarea id="value2" name="value2" required></textarea><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('inputForm');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const value1 = document.getElementById('value1').value;
+            const value2 = document.getElementById('value2').value;
+
+            const vscode = acquireVsCodeApi();
+            vscode.postMessage({
+                command: 'submit',
+                data: { value1, value2 }
+            });
+        });
+    </script>
+</body>
+
+</html>`

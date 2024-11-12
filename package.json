@@ -1,0 +1,168 @@
+{
+  "name": "notebox",
+  "displayName": "Note Box",
+  "description": "",
+  "publisher": "SUNITMAL",
+  "enabledApiProposals": [
+    "treeViewActiveItem"
+  ],
+  "icon": "resources/ExtentionIcon.png",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization",
+    "Notebooks"
+  ],
+  "keywords": [
+    "notebook",
+    "clip"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "",
+  "activationEvents": [
+    "onCommand:notebox.insert-note",
+    "onCommand:notebox.insert-code",
+    "onCommand:notebox.store-code",
+    "onCommand:notebox.filter",
+    "onCommand:notebox.copy",
+    "onCommand:notebox.content"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "notebox.insert-note",
+        "title": "Insert Note"
+      },
+      {
+        "command": "notebox.insert-code",
+        "title": "Insert Code"
+      },
+      {
+        "command": "notebox.store-code",
+        "title": "Store Code Snap"
+      },
+      {
+        "command": "notebox.filter",
+        "title": "Filter Code Snaps"
+      },
+      {
+        "command": "notebox.copy",
+        "title": "Copy Data"
+      },
+      {
+        "command": "notebox.delete",
+        "title": "Remove Data"
+      },
+      {
+        "command": "notebox.content",
+        "title": "Show Content"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "notebox",
+          "title": "Note Box",
+          "icon": "resources/ViewIcon.png"
+        }
+      ]
+    },
+    "views": {
+      "notebox": [
+        {
+          "id": "notebook",
+          "name": "Notebook"
+        },
+        {
+          "id": "codesnap",
+          "name": "Code Snap"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "notebox.insert-note",
+          "when": "view == notebook",
+          "title": "Insert Note"
+        },
+        {
+          "command": "notebox.insert-code",
+          "when": "view == codesnap",
+          "title": "Insert Code"
+        },
+        {
+          "command": "notebox.filter",
+          "when": "view == codesnap",
+          "title": "Filter Code Snaps"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "notebox.copy",
+          "when": "view == notebook",
+          "group": "navigation"
+        },
+        {
+          "command": "notebox.delete",
+          "when": "view == notebook",
+          "group": "navigation"
+        },
+        {
+          "command": "notebox.content",
+          "when": "view == notebook",
+          "group": "navigation"
+        },
+        {
+          "command": "notebox.copy",
+          "when": "view == codesnap",
+          "group": "navigation"
+        },
+        {
+          "command": "notebox.delete",
+          "when": "view == codesnap",
+          "group": "navigation"
+        },
+        {
+          "command": "notebox.content",
+          "when": "view == codesnap",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "notebox.store-code",
+          "when": "editorHasSelection",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.95.0",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "clipbox": "file:",
+    "notebox": "file:",
+    "noteBox": "file:",
+    "sqlite3": "^5.1.7"
+  }
+}
