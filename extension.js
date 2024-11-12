@@ -168,55 +168,18 @@ function activate(context) {
 		noteModelProvider.showContent(content);
 	})
 
-	const copyFunction = vscode.commands.registerCommand('notebox.copy', (content) => {
-		codeModelProvider.copyCode(content);
+	const copyFunction = vscode.commands.registerCommand('notebox.copy', (treeItem) => {
+		codeModelProvider.copyCode(treeItem.content);
 	})
 
 	const deleteFunction = vscode.commands.registerCommand('notebox.delete', (treeItem) => {
 		// vscode.window.showInformationMessage();
-		if (treeItem.type === 'note') {
-			dbOperator.deleteNote(treeItem.id)
-				// eslint-disable-next-line no-unused-vars
-				.then((deleted) => {
-					// console.log(`Note deleted`);
-					vscode.window.showInformationMessage('Note Deleted successfully');
-					noteModelProvider.refresh();
-				})
-				.catch((err) => {
-					// console.error('Error deleting note:', err);
-					vscode.window.showInformationMessage('Error deleting note.', err);
-				});
-		} else if (treeItem.type === 'code') {
-			dbOperator.deleteCode(treeItem.id)
-				// eslint-disable-next-line no-unused-vars
-				.then((deleted) => {
-					// console.log(`Code deleted`);
-					vscode.window.showInformationMessage('Code Deleted successfully');
-					codeModelProvider.refresh();
-				})
-				.catch((err) => {
-					// console.error('Error deleting code:', err);
-					vscode.window.showInformationMessage('Error deleting code.', err);
-				});
-		} else {
-			// console.log("Unknown type");
-			vscode.window.showWarningMessage('Unknown type');
-		}
-	})
-
-	const contentDisplay = vscode.commands.registerCommand('notebox.content', (treeItem) => {
-		// console.log(treeItem);
-		vscode.window.showInformationMessage(treeItem.content, 'Copy', 'Delete').then((value) => {
-			if (value === 'Copy') {
-				vscode.env.clipboard.writeText(treeItem.content).then(() => {
-					vscode.window.showInformationMessage("Code copied to clipboard.");
-					// eslint-disable-next-line no-unused-vars
-				}, (error) => {
-					// console.error("Error copying code to clipboard:", error);
-					vscode.window.showErrorMessage("Failed to copy code to clipboard.");
-				});
-			}
-			if (value === 'Delete') {
+		vscode.window.showWarningMessage(
+			`Are you sure you want to delete this ${treeItem.type === 'note' ? 'note' : 'code'}?`,
+			{ modal: true },
+			'Yes', 'No'
+		).then((value) => {
+			if (value === 'Yes') {
 				if (treeItem.type === 'note') {
 					dbOperator.deleteNote(treeItem.id)
 						// eslint-disable-next-line no-unused-vars
@@ -246,6 +209,58 @@ function activate(context) {
 					vscode.window.showWarningMessage('Unknown type');
 				}
 			}
+		});
+	})
+
+	const contentDisplay = vscode.commands.registerCommand('notebox.content', (treeItem) => {
+		vscode.window.showInformationMessage(`${treeItem.header}\n\n${treeItem.content}`, 'Copy', 'Delete').then((value) => {
+			if (value === 'Copy') {
+				vscode.env.clipboard.writeText(treeItem.content).then(() => {
+					vscode.window.showInformationMessage("Code copied to clipboard.");
+					// eslint-disable-next-line no-unused-vars
+				}, (error) => {
+					// console.error("Error copying code to clipboard:", error);
+					vscode.window.showErrorMessage("Failed to copy code to clipboard.");
+				});
+			}
+			if (value === 'Delete') {
+				vscode.window.showWarningMessage(
+					`Are you sure you want to delete this ${treeItem.type === 'note' ? 'note' : 'code'}?`,
+					{ modal: true },
+					'Yes', 'No'
+				).then((value) => {
+					if (value === 'Yes') {
+						if (treeItem.type === 'note') {
+							dbOperator.deleteNote(treeItem.id)
+								// eslint-disable-next-line no-unused-vars
+								.then((deleted) => {
+									// console.log(`Note deleted`);
+									vscode.window.showInformationMessage('Note Deleted successfully');
+									noteModelProvider.refresh();
+								})
+								.catch((err) => {
+									// console.error('Error deleting note:', err);
+									vscode.window.showInformationMessage('Error deleting note.', err);
+								});
+						} else if (treeItem.type === 'code') {
+							dbOperator.deleteCode(treeItem.id)
+								// eslint-disable-next-line no-unused-vars
+								.then((deleted) => {
+									// console.log(`Code deleted`);
+									vscode.window.showInformationMessage('Code Deleted successfully');
+									codeModelProvider.refresh();
+								})
+								.catch((err) => {
+									// console.error('Error deleting code:', err);
+									vscode.window.showInformationMessage('Error deleting code.', err);
+								});
+						} else {
+							// console.log("Unknown type");
+							vscode.window.showWarningMessage('Unknown type');
+						}
+					}
+				})
+			};
 		});
 	})
 

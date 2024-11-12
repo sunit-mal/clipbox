@@ -57,6 +57,7 @@ class TreeItem extends vscode.TreeItem {
         this.contextValue = 'notebookItem';
         this.id = id;
         this.type = 'note';
+        this.header = `Title: ${name}, Content:`;
     }
 }
 

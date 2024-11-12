@@ -86,6 +86,7 @@ class CodeTreeItem extends vscode.TreeItem {
         this.contextValue = 'codeItem';
         this.content = name;
         this.type = "code";
+        this.header = `language: ${content}, Content:`;
     }
 }
 
