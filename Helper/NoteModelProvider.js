@@ -49,11 +49,11 @@ class TreeItem extends vscode.TreeItem {
         this.iconPath = path.join(this.context.extensionPath, 'resources', 'sticky-notes.png');
         this.tooltip = content;
         this.content = content;
-        this.command = {
-            command: 'notebox.showContent',
-            title: '',
-            arguments: [content]
-        };
+        // this.command = {
+        //     command: 'notebox.showContent',
+        //     title: '',
+        //     arguments: [content]
+        // };
         this.contextValue = 'notebookItem';
         this.id = id;
         this.type = 'note';
