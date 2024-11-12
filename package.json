@@ -22,9 +22,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/sunit-mal/clipbox.git"
   },
-  "homepage": "",
+  "homepage": "https://github.com/sunit-mal/clipbox/blob/main/README.md",
   "activationEvents": [
     "onCommand:notebox.insert-note",
     "onCommand:notebox.insert-code",
