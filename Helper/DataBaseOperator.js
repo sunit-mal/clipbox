@@ -3,17 +3,18 @@ const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 
 class DataBaseOperator {
-    constructor(node_db, code_db) {
+    constructor(node_db, code_db, context) {
         this.node_db = node_db;
         this.code_db = code_db;
+        this.context = context;
         this.dbStatus();
     }
 
     dbStatus() {
-        vscode.workspace.fs.createDirectory(context.globalStorageUri);
+        vscode.workspace.fs.createDirectory(this.context.globalStorageUri);
 
-        const note_db_path = path.join(context.globalStorageUri.fsPath, 'notebox.db');
-        const code_db_path = path.join(context.globalStorageUri.fsPath, 'codebox.db');
+        const note_db_path = path.join(this.context.globalStorageUri.fsPath, 'notebox.db');
+        const code_db_path = path.join(this.context.globalStorageUri.fsPath, 'codebox.db');
 
         const note_db = new sqlite3.Database(note_db_path, (err) => {
             if (err) {

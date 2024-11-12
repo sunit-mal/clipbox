@@ -73,7 +73,7 @@ function activate(context) {
 		}
 	});
 
-	const dbOperator = new DataBaseOperator(note_db, code_db);
+	const dbOperator = new DataBaseOperator(note_db, code_db, context);
 
 	const noteModelProvider = new NoteModelProvider(dbOperator, context);
 	const codeModelProvider = new CodeModelProvider(dbOperator, context);
