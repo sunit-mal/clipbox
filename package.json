@@ -1,11 +1,8 @@
 {
-  "name": "notebox",
-  "displayName": "Note Box",
-  "description": "",
+  "name": "memory-vault",
+  "displayName": "Memory Vault",
+  "description": "Clipbox is a Visual Studio Code extension designed to simplify note-taking and code snippet storage. It provides users with an intuitive interface to store, organize, and retrieve code snippets and notes.",
   "publisher": "SUNITMAL",
-  "enabledApiProposals": [
-    "treeViewActiveItem"
-  ],
   "icon": "resources/ExtentionIcon.png",
   "version": "0.0.1",
   "engines": {
@@ -26,119 +23,119 @@
   },
   "homepage": "https://github.com/sunit-mal/clipbox/blob/main/README.md",
   "activationEvents": [
-    "onCommand:notebox.insert-note",
-    "onCommand:notebox.insert-code",
-    "onCommand:notebox.store-code",
-    "onCommand:notebox.filter",
-    "onCommand:notebox.copy",
-    "onCommand:notebox.content"
+    "onCommand:memory-vault.insert-note",
+    "onCommand:memory-vault.insert-code",
+    "onCommand:memory-vault.store-code",
+    "onCommand:memory-vault.filter",
+    "onCommand:memory-vault.copy",
+    "onCommand:memory-vault.content"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "notebox.insert-note",
+        "command": "memory-vault.insert-note",
         "title": "Insert Note"
       },
       {
-        "command": "notebox.insert-code",
+        "command": "memory-vault.insert-code",
         "title": "Insert Code"
       },
       {
-        "command": "notebox.store-code",
+        "command": "memory-vault.store-code",
         "title": "Store Code Snap"
       },
       {
-        "command": "notebox.filter",
+        "command": "memory-vault.filter",
         "title": "Filter Code Snaps"
       },
       {
-        "command": "notebox.copy",
+        "command": "memory-vault.copy",
         "title": "Copy Data"
       },
       {
-        "command": "notebox.delete",
+        "command": "memory-vault.delete",
         "title": "Remove Data"
       },
       {
-        "command": "notebox.content",
+        "command": "memory-vault.content",
         "title": "Show Content"
       }
     ],
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "notebox",
-          "title": "Note Box",
+          "id": "memory-vault",
+          "title": "Memory Vault",
           "icon": "resources/ViewIcon.png"
         }
       ]
     },
     "views": {
-      "notebox": [
+      "memory-vault": [
         {
           "id": "notebook",
-          "name": "Notebook"
+          "name": "Note Vault"
         },
         {
           "id": "codesnap",
-          "name": "Code Snap"
+          "name": "Code Vault"
         }
       ]
     },
     "menus": {
       "view/title": [
         {
-          "command": "notebox.insert-note",
+          "command": "memory-vault.insert-note",
           "when": "view == notebook",
           "title": "Insert Note"
         },
         {
-          "command": "notebox.insert-code",
+          "command": "memory-vault.insert-code",
           "when": "view == codesnap",
           "title": "Insert Code"
         },
         {
-          "command": "notebox.filter",
+          "command": "memory-vault.filter",
           "when": "view == codesnap",
           "title": "Filter Code Snaps"
         }
       ],
       "view/item/context": [
         {
-          "command": "notebox.copy",
+          "command": "memory-vault.copy",
           "when": "view == notebook",
           "group": "navigation"
         },
         {
-          "command": "notebox.delete",
+          "command": "memory-vault.delete",
           "when": "view == notebook",
           "group": "navigation"
         },
         {
-          "command": "notebox.content",
+          "command": "memory-vault.content",
           "when": "view == notebook",
           "group": "navigation"
         },
         {
-          "command": "notebox.copy",
+          "command": "memory-vault.copy",
           "when": "view == codesnap",
           "group": "navigation"
         },
         {
-          "command": "notebox.delete",
+          "command": "memory-vault.delete",
           "when": "view == codesnap",
           "group": "navigation"
         },
         {
-          "command": "notebox.content",
+          "command": "memory-vault.content",
           "when": "view == codesnap",
           "group": "navigation"
         }
       ],
       "editor/context": [
         {
-          "command": "notebox.store-code",
+          "command": "memory-vault.store-code",
           "when": "editorHasSelection",
           "group": "navigation"
         }
@@ -161,8 +158,7 @@
   },
   "dependencies": {
     "clipbox": "file:",
-    "notebox": "file:",
-    "noteBox": "file:",
+    "memory-vault": "file:",
     "sqlite3": "^5.1.7"
   }
 }

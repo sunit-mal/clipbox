@@ -78,7 +78,7 @@ class CodeTreeItem extends vscode.TreeItem {
         this.iconPath = path.join(this.context.extensionPath, 'resources', 'terminal.png');
         this.tooltip = name;
         // this.command = {
-        //     command: 'notebox.copy',
+        //     command: 'memory-vault.copy',
         //     title: '',
         //     arguments: [name]
         // };

@@ -1,6 +1,6 @@
-# Clipbox [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/SUNITMAL.clipbox?style=plastic&color=light%20green)](https://marketplace.visualstudio.com/items?itemName=SUNITMAL.clipbox) [![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/SUNITMAL.clipbox?style=plastic&color=blue)](https://marketplace.visualstudio.com/items?itemName=SUNITMAL.clipbox)
+# Memory Vault [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/memory-vault)](https://marketplace.visualstudio.com/items?itemName=SUNITMAL.memory-vault) [![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/SUNITMAL.memory-vault?style=plastic&color=blue)](https://marketplace.visualstudio.com/items?itemName=SUNITMAL.memory-vault)
 
-Clipbox is a Visual Studio Code extension designed to simplify note-taking and code snippet storage. It provides users with an intuitive interface to store, organize, and retrieve code snippets and notes.
+Memory Vault is a Visual Studio Code extension designed to simplify note-taking and code snippet storage. It provides users with an intuitive interface to store, organize, and retrieve code snippets and notes.
 
 ## Preview
 
@@ -17,11 +17,11 @@ Clipbox is a Visual Studio Code extension designed to simplify note-taking and c
 - **Tree View**: Displays stored snippets and notes in a hierarchical structure.
 - **Filter by Language**: Search and filter code snippets by programming language.
 
-<!-- ## Installation
+## Installation
 
 1. Install [Visual Studio Code](https://code.visualstudio.com/).
 2. Open the Extensions view (`Ctrl+Shift+X`).
-3. Search for `Clipbox` and click Install. -->
+3. Search for `Memory Vault` and click Install.
 
 ## Commands
 

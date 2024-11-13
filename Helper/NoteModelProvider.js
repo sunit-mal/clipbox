@@ -50,7 +50,7 @@ class TreeItem extends vscode.TreeItem {
         this.tooltip = content;
         this.content = content;
         // this.command = {
-        //     command: 'notebox.showContent',
+        //     command: 'memory-vault.showContent',
         //     title: '',
         //     arguments: [content]
         // };

@@ -87,12 +87,12 @@ function activate(context) {
 
 	context.subscriptions.push(notebookTreeView, codeBoxTreeView);
 
-	const noteInserter = vscode.commands.registerCommand('notebox.insert-note', async function () {
+	const noteInserter = vscode.commands.registerCommand('memory-vault.insert-note', async function () {
 		const formView = new FormView(context, dbOperator, noteModelProvider.refresh.bind(noteModelProvider));
 		formView.FormView();
 	});
 
-	const codeInserter = vscode.commands.registerCommand('notebox.store-code', async function () {
+	const codeInserter = vscode.commands.registerCommand('memory-vault.store-code', async function () {
 		const editor = vscode.window.activeTextEditor;
 
 		if (editor) {
@@ -128,7 +128,7 @@ function activate(context) {
 		}
 	});
 
-	const codeManualInsert = vscode.commands.registerCommand('notebox.insert-code', async function () {
+	const codeManualInsert = vscode.commands.registerCommand('memory-vault.insert-code', async function () {
 		const editor = vscode.window.activeTextEditor;
 
 		if (editor) {
@@ -164,15 +164,15 @@ function activate(context) {
 		}
 	});
 
-	const contentProvider = vscode.commands.registerCommand('notebox.showContent', (content) => {
+	const contentProvider = vscode.commands.registerCommand('memory-vault.showContent', (content) => {
 		noteModelProvider.showContent(content);
 	})
 
-	const copyFunction = vscode.commands.registerCommand('notebox.copy', (treeItem) => {
+	const copyFunction = vscode.commands.registerCommand('memory-vault.copy', (treeItem) => {
 		codeModelProvider.copyCode(treeItem.content);
 	})
 
-	const deleteFunction = vscode.commands.registerCommand('notebox.delete', (treeItem) => {
+	const deleteFunction = vscode.commands.registerCommand('memory-vault.delete', (treeItem) => {
 		// vscode.window.showInformationMessage();
 		vscode.window.showWarningMessage(
 			`Are you sure you want to delete this ${treeItem.type === 'note' ? 'note' : 'code'}?`,
@@ -212,7 +212,7 @@ function activate(context) {
 		});
 	})
 
-	const contentDisplay = vscode.commands.registerCommand('notebox.content', (treeItem) => {
+	const contentDisplay = vscode.commands.registerCommand('memory-vault.content', (treeItem) => {
 		vscode.window.showInformationMessage(`${treeItem.header}\n\n${treeItem.content}`, 'Copy', 'Delete').then((value) => {
 			if (value === 'Copy') {
 				vscode.env.clipboard.writeText(treeItem.content).then(() => {
@@ -264,7 +264,7 @@ function activate(context) {
 		});
 	})
 
-	const filterCodeBox = vscode.commands.registerCommand('notebox.filter', async function () {
+	const filterCodeBox = vscode.commands.registerCommand('memory-vault.filter', async function () {
 		vscode.window.showQuickPick([
 			'Java',
 			'Python',
