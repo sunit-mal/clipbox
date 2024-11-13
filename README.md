@@ -4,7 +4,7 @@ Memory Vault is a Visual Studio Code extension designed to simplify note-taking 
 
 ## Preview
 
-![Screenshot (4)](https://github.com/user-attachments/assets/ab59b9a5-4b72-46ef-9b28-1ecd6e869eb6)
+![Screenshot (9)](https://github.com/user-attachments/assets/f0f00fc6-ba7d-4bc6-88ac-dcd21f0ed008)
 ![Screenshot (6)](https://github.com/user-attachments/assets/5cd319a1-d8d9-41bd-85ed-515d22ac6d8b)
 ![Screenshot (7)](https://github.com/user-attachments/assets/69811521-bce5-4fb6-bd84-c44403416771)
 ![Screenshot (8)](https://github.com/user-attachments/assets/df30f0c3-2175-4037-92ed-781975825b14)
