@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.3] - 2024-11-15
+
+### Fixed
+
+Change global storage location for future synchronization feature.
+
 ## [0.0.2] - 2024-11-14
 
 ### Fixed
@@ -33,3 +39,4 @@ Make long waiting issue and extension not working error. For this issue run [mem
 
 [0.0.1]: https://github.com/sunit-mal/clipbox/tree/v0.0.1
 [0.0.2]: https://github.com/sunit-mal/clipbox/tree/v0.0.2
+[0.0.3]: https://github.com/sunit-mal/clipbox/tree/v0.0.3

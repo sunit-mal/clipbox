@@ -1,6 +1,7 @@
 const vscode = require('vscode');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const fs = require('fs');
 const DataBaseOperator = require('./Helper/DataBaseOperator');
 const FormView = require('./Helper/InputForm');
 const NoteModelProvider = require('./Helper/NoteModelProvider');
@@ -10,68 +11,96 @@ const CodeModelProvider = require('./Helper/CodeModelProvider');
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	vscode.workspace.fs.createDirectory(context.globalStorageUri);
+	// const note_db_path = path.join(context.globalStorageUri.fsPath, 'notebox.db');
+	// const code_db_path = path.join(context.globalStorageUri.fsPath, 'codebox.db');
 
-	const note_db_path = path.join(context.globalStorageUri.fsPath, 'notebox.db');
-	const code_db_path = path.join(context.globalStorageUri.fsPath, 'codebox.db');
+	const appDataPath = process.env.APPDATA || (process.platform === 'darwin' ? path.join(process.env.HOME, 'Library', 'Application Support') : path.join(process.env.HOME, '.config'));
 
-	const note_db = new sqlite3.Database(note_db_path, (err) => {
-		if (err) {
-			// console.error("Failed to connect to database:", err);
-		} else {
-			const createNoteBookTableQuery = `
-                CREATE TABLE IF NOT EXISTS NoteBook (
-                    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                    "title" TEXT NOT NULL,
-                    "content" TEXT NOT NULL,
-                    "overflow" TINYINT NULL,
-                    "overflowkeys" TEXT NULL
-                );
-            `;
-			note_db.run(createNoteBookTableQuery, (err) => {
-				if (err) {
-					// console.error("Error creating NoteBook table:", err);
-				} else {
-					// console.log("NoteBook table is ready.");
-				}
-			});
+	const folderName = '.memoryVault';
+	const extensionGlobalStorageUri = vscode.Uri.file(path.join(appDataPath, folderName));
 
-			const createOverflowTableQuery = `
-                CREATE TABLE IF NOT EXISTS Overflow (
-                    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                    "content" TEXT NOT NULL
-                );
-            `;
-			note_db.run(createOverflowTableQuery, (err) => {
-				if (err) {
-					// console.error("Error creating Overflow table:", err);
-				} else {
-					// console.log("Overflow table is ready.");
-				}
-			});
-		}
-	});
+	const extensionFolderPath = extensionGlobalStorageUri.fsPath;
 
-	const code_db = new sqlite3.Database(code_db_path, (err) => {
-		if (err) {
-			// console.error("Failed to connect to database:", err);
-		} else {
-			const createCodeBoxTableQuery = `
-                CREATE TABLE IF NOT EXISTS CodeBox (
-                    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                    "language" TEXT NOT NULL,
-                    "content" TEXT NOT NULL
-                );
-            `;
-			code_db.run(createCodeBoxTableQuery, (err) => {
-				if (err) {
-					// console.error("Error creating CodeBox table:", err);
-				} else {
-					// console.log("CodeBox table is ready.");
-				}
-			});
-		}
-	});
+	// Ensure the directory exists (create it if it doesn't exist)
+	if (!fs.existsSync(extensionFolderPath)) {
+		fs.mkdirSync(extensionFolderPath, { recursive: true });
+	}
+
+	const note_db_path = path.join(extensionFolderPath, 'notebox.db');
+	const code_db_path = path.join(extensionFolderPath, 'codebox.db');
+
+	let note_db;
+	let code_db;
+
+	// Check if the 'notebox.db' file exists
+	if (fs.existsSync(note_db_path)) {
+		console.log("notebox.db already exists, processing further...");
+	} else {
+		console.log("notebox.db not found, creating database...");
+		note_db = new sqlite3.Database(note_db_path, (err) => {
+			if (err) {
+				console.error("Failed to connect to note database:", err);
+			} else {
+				const createNoteBookTableQuery = `
+                    CREATE TABLE IF NOT EXISTS NoteBook (
+                        "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                        "title" TEXT NOT NULL,
+                        "content" TEXT NOT NULL,
+                        "overflow" TINYINT NULL,
+                        "overflowkeys" TEXT NULL
+                    );
+                `;
+				note_db.run(createNoteBookTableQuery, (err) => {
+					if (err) {
+						console.error("Error creating NoteBook table:", err);
+					} else {
+						console.log("NoteBook table is ready.");
+					}
+				});
+
+				const createOverflowTableQuery = `
+                    CREATE TABLE IF NOT EXISTS Overflow (
+                        "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                        "content" TEXT NOT NULL
+                    );
+                `;
+				note_db.run(createOverflowTableQuery, (err) => {
+					if (err) {
+						console.error("Error creating Overflow table:", err);
+					} else {
+						console.log("Overflow table is ready.");
+					}
+				});
+			}
+		});
+	}
+
+	// Check if the 'codebox.db' file exists
+	if (fs.existsSync(code_db_path)) {
+		console.log("codebox.db already exists, processing further...");
+	} else {
+		console.log("codebox.db not found, creating database...");
+		code_db = new sqlite3.Database(code_db_path, (err) => {
+			if (err) {
+				console.error("Failed to connect to code database:", err);
+			} else {
+				const createCodeBoxTableQuery = `
+                    CREATE TABLE IF NOT EXISTS CodeBox (
+                        "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                        "language" TEXT NOT NULL,
+                        "content" TEXT NOT NULL
+                    );
+                `;
+				code_db.run(createCodeBoxTableQuery, (err) => {
+					if (err) {
+						console.error("Error creating CodeBox table:", err);
+					} else {
+						console.log("CodeBox table is ready.");
+					}
+				});
+			}
+		});
+	}
 
 	const dbOperator = new DataBaseOperator(note_db, code_db, context);
 

@@ -7,7 +7,7 @@ class DataBaseOperator {
         this.node_db = node_db;
         this.code_db = code_db;
         this.context = context;
-        this.dbStatus();
+        // this.dbStatus();
     }
 
     dbStatus() {
