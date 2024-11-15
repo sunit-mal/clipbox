@@ -34,9 +34,7 @@ function activate(context) {
 
 	// Check if the 'notebox.db' file exists
 	if (fs.existsSync(note_db_path)) {
-		console.log("notebox.db already exists, processing further...");
-	} else {
-		console.log("notebox.db not found, creating database...");
+		
 		note_db = new sqlite3.Database(note_db_path, (err) => {
 			if (err) {
 				console.error("Failed to connect to note database:", err);
@@ -77,8 +75,7 @@ function activate(context) {
 
 	// Check if the 'codebox.db' file exists
 	if (fs.existsSync(code_db_path)) {
-		console.log("codebox.db already exists, processing further...");
-	} else {
+		
 		console.log("codebox.db not found, creating database...");
 		code_db = new sqlite3.Database(code_db_path, (err) => {
 			if (err) {
@@ -103,7 +100,7 @@ function activate(context) {
 	}
 
 	const dbOperator = new DataBaseOperator(note_db, code_db, context);
-
+	
 	const noteModelProvider = new NoteModelProvider(dbOperator, context);
 	const codeModelProvider = new CodeModelProvider(dbOperator, context);
 
@@ -120,7 +117,7 @@ function activate(context) {
 		const formView = new FormView(context, dbOperator, noteModelProvider.refresh.bind(noteModelProvider));
 		formView.FormView();
 	});
-
+	// console.log(dbOperator.getCode());
 	const codeInserter = vscode.commands.registerCommand('memory-vault.store-code', async function () {
 		const editor = vscode.window.activeTextEditor;
 
