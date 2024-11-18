@@ -34,7 +34,6 @@ function activate(context) {
 
 	// Check if the 'notebox.db' file exists
 	if (fs.existsSync(note_db_path)) {
-		
 		note_db = new sqlite3.Database(note_db_path, (err) => {
 			if (err) {
 				console.error("Failed to connect to note database:", err);

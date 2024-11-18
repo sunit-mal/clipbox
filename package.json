@@ -4,7 +4,7 @@
   "description": "Clipbox is a Visual Studio Code extension designed to simplify note-taking and code snippet storage. It provides users with an intuitive interface to store, organize, and retrieve code snippets and notes.",
   "publisher": "SUNITMAL",
   "icon": "resources/ExtentionIcon.png",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.95.0"
   },

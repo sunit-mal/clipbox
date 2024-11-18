@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.4] - 2024-11-18
+
+### Fixed
+
+store file generation issue fixed.
+
 ## [0.0.3] - 2024-11-15
 
 ### Fixed
@@ -40,3 +46,4 @@ Make long waiting issue and extension not working error. For this issue run [mem
 [0.0.1]: https://github.com/sunit-mal/clipbox/tree/v0.0.1
 [0.0.2]: https://github.com/sunit-mal/clipbox/tree/v0.0.2
 [0.0.3]: https://github.com/sunit-mal/clipbox/tree/v0.0.3
+[0.0.4]: https://github.com/sunit-mal/clipbox/tree/v0.0.4
